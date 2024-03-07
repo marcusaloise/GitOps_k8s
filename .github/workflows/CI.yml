@@ -1,9 +1,8 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - "main"
+  release:
+    types: [created]
 
 jobs:
   build:
@@ -28,4 +27,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/marcus-2048:${{ env.GITHUB_REF }}
