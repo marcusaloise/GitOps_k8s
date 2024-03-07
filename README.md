@@ -33,7 +33,7 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ```
 
-`Worflow do action:`
+`Workflow do action:`
 
 ``` yaml
 name: CI
@@ -72,4 +72,42 @@ jobs:
 
 
 ```
+## Agora vamos para o CD da historia
 
+### Configurações de ambientes
+
+> [!IMPORTANT]  
+> nesse ambiente fiz tudo em uma vm ubuntu 22.01 LTS, utilizando o minikube como cluster local de node unico.
+
+
+``` conf
+# Config da vm:
+
+ - 4GB Ram
+ - 20GB Disk
+ - 6 CPU
+
+```
+
+
+
+## Instalando o ArgoCd
+
+### Instalando o ArgoCD como um operador no Kubernetes
+Para instalar o ArgoCD como um operador no Kubernetes, antes precisamos criar uma namespace chamada argocd, e para isso basta executar o seguinte comando:
+
+``` 
+kubectl create namespace argocd
+```
+
+A saída desse comando será algo parecido com isso:
+
+```
+namespace/argocd created
+```
+
+Agora vamos instalar o ArgoCD como um operador no Kubernetes:
+
+```
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
